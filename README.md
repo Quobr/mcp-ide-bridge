@@ -161,4 +161,4 @@ You don't need the example server. You can add the bridge pattern to any existin
 
 ## License
 
-ISC
+MIT
