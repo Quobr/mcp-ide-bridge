@@ -62,17 +62,15 @@ If the user already knows their Sync Code (visible in the IDE status bar), they 
 
 ## IDE Support
 
-The bridge differentiates between VS Code forks because each has its own command namespace. Currently mapped:
+Currently, only **Antigravity** is integrated. The abstraction layer (`vscode/src/lab/ai-mapper.ts`) is designed to make adding support for other IDEs straightforward — each one just needs its command mappings added.
 
-| IDE | Send to Chat | Open Composer | Inline Completion |
-|---|---|---|---|
-| **Antigravity** | ✅ | ✅ | — |
-| **Cursor** | ✅ | ✅ | ✅ |
-| **Windsurf** | ✅ | ✅ | — |
-| **PearAI** | ✅ | — | — |
-| **Cline** | ✅ | — | — |
+| IDE | Send to Chat | New Conversation |
+|---|---|---|
+| **Antigravity** | ✅ | ✅ |
+| Cursor | planned | planned |
+| Windsurf | planned | planned |
 
-> Don't see your IDE? The abstraction layer is designed to be extended. PRs welcome!
+> Want to add your IDE? The `AI_CAPABILITIES` map in `ai-mapper.ts` is the only place you need to touch.
 
 ---
 
