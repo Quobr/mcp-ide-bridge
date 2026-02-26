@@ -1,0 +1,19 @@
+{
+  "name": "mcp_ide_mcp_example",
+  "version": "1.0.0",
+  "description": "Example MCP server connecting to IDE via Sync Code protocol",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^18.0.0"
+  }
+}

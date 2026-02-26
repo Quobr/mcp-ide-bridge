@@ -1,0 +1,48 @@
+{
+  "name": "mcp-ide-bridge",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "version": "0.5.0",
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcp-ide-bridge.status",
+        "title": "MCP Bridge: Show Status"
+      },
+      {
+        "command": "mcp-ide-bridge.copySyncCode",
+        "title": "MCP Bridge: Copy Sync Code"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node esbuild.js --production",
+    "compile": "tsc -b && node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/mcp-ide-bridge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "displayName": "MCP IDE Bridge",
+  "publisher": "Quobr",
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "esbuild": "^0.27.3",
+    "eslint": "^10.0.1",
+    "typescript": "^5.9.3"
+  }
+}

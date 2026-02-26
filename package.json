@@ -1,0 +1,19 @@
+{
+    "name": "mcp-ide-bridge-monorepo",
+    "private": true,
+    "description": "Monorepo for MCP IDE Bridge extension and examples",
+    "workspaces": [
+        "vscode",
+        "mcp_example"
+    ],
+    "scripts": {
+        "install:all": "npm install",
+        "build:vscode": "npm run compile -w vscode",
+        "build:example": "npm run build -w mcp_example",
+        "build": "npm run build:vscode && npm run build:example",
+        "clean": "rimraf vscode/out vscode/dist mcp_example/dist"
+    },
+    "devDependencies": {
+        "rimraf": "^5.0.0"
+    }
+}

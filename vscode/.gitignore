@@ -1,0 +1,15 @@
+node_modules/
+dist/
+out/
+*.vsix
+.vscode-test/
+.claude-context
+.claude/
+.spec-workflow/
+*.tsbuildinfo
+package-lock.json
+build_log*.txt
+
+# Temporary test files
+test.js
+test-commands.js
