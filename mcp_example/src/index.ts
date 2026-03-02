@@ -25,6 +25,18 @@ let activeIdeContext: IDEContext | null = null;
 const ALLOWED_IDE_TYPE = (process.env.IDE_TYPE || 'antigravity').toLowerCase();
 const SOCKET_DIR = path.join(os.homedir(), '.mcp_ide_bridge', 'sockets');
 
+const IDE_TYPE_ALIASES: Record<string, string[]> = {
+    vscode: ['vscode', 'vscodium', 'code', 'visual-studio-code'],
+    vscodium: ['vscodium', 'vscode', 'codium'],
+    codium: ['vscodium', 'vscode', 'codium'],
+};
+
+function getAcceptedIdeTypes(rawIdeType: string): Set<string> {
+    const normalized = rawIdeType.trim().toLowerCase();
+    const accepted = IDE_TYPE_ALIASES[normalized] || [normalized];
+    return new Set(accepted);
+}
+
 const server = new Server(
     {
         name: 'mcp_ide_mcp_example',
@@ -154,11 +166,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     if (name === 'request_ide_connection') {
         const sessions = await scanAliveSessions();
-        const filtered = sessions.filter(s => s.ideType === ALLOWED_IDE_TYPE);
+        const acceptedIdeTypes = getAcceptedIdeTypes(ALLOWED_IDE_TYPE);
+        const filtered = sessions.filter(s => acceptedIdeTypes.has(s.ideType));
 
         if (filtered.length === 0) {
+            const acceptedText = Array.from(getAcceptedIdeTypes(ALLOWED_IDE_TYPE)).join(', ');
             return {
-                content: [{ type: 'text', text: `No active ${ALLOWED_IDE_TYPE} windows found with the MCP Bridge extension.` }],
+                content: [{ type: 'text', text: `No active IDE windows found for IDE_TYPE='${ALLOWED_IDE_TYPE}'. Accepted socket ids: ${acceptedText}.` }],
                 isError: true
             };
         }

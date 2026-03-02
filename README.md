@@ -62,13 +62,35 @@ If the user already knows their Sync Code (visible in the IDE status bar), they 
 
 ## IDE Support
 
-Currently, only **Antigravity** is integrated. The abstraction layer (`vscode/src/lab/ai-mapper.ts`) is designed to make adding support for other IDEs straightforward — each one just needs its command mappings added.
+Bridge-level support (IPC + Sync Code + open file) is available for VS Code-compatible IDEs running this extension. AI action mappings are IDE-specific and live in `vscode/src/lab/ai-mapper.ts`.
 
-| IDE | Send to Chat | New Conversation |
+### Basic Bridge Compatibility
+
+| IDE | request/connect | open file |
+|---|---|---|
+| **VS Code** | ✅ | ✅ |
+| **VSCodium** | ✅ | ✅ |
+| Cursor | ? | ? |
+| Windsurf | ? | ? |
+| **Antigravity** | ✅ | ✅ |
+
+### AI Actions Compatibility
+
+| IDE | sendToChat | newConversation |
 |---|---|---|
 | **Antigravity** | ✅ | ✅ |
-| Cursor | planned | planned |
-| Windsurf | planned | planned |
+| Cursor | ? | ? |
+| Windsurf | ? | ? |
+| VS Code | - | - |
+| VSCodium | - | - |
+
+`?` means there is a command mapping candidate in code, but it has not been validated end-to-end yet.
+`-` means no action mapping is currently defined for that IDE profile.
+
+### IDE_TYPE values (mcp_example)
+
+- `IDE_TYPE=vscode` works with both VS Code and VSCodium sockets.
+- `IDE_TYPE=vscodium` (or `codium`) also works with both VSCodium and VS Code sockets.
 
 > Want to add your IDE? The `AI_CAPABILITIES` map in `ai-mapper.ts` is the only place you need to touch.
 

@@ -2,6 +2,7 @@ node_modules/
 dist/
 out/
 *.vsix
+*.tgz
 .vscode-test/
 .claude-context
 .claude/

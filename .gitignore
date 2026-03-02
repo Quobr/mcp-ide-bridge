@@ -16,6 +16,7 @@ mcp_example/dist/
 # VS Code specific
 .vscode-test/
 *.vsix
+*.tgz
 .claude-context
 .claude/
 .spec-workflow/

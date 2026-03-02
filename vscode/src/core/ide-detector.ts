@@ -6,5 +6,6 @@ export function detectIDE(): string {
     if (appName.includes('windsurf')) return 'windsurf';
     if (appName.includes('antigravity') || process.env.ANTIGRAVITY_ENV) return 'antigravity';
     if (appName.includes('kiro') || process.env.KIRO_ENV) return 'kiro';
+    if (appName.includes('codium') || appName.includes('vscodium')) return 'vscodium';
     return 'vscode';
 }
